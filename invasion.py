@@ -1,6 +1,7 @@
 import sys
 import pygame
 from settings import Settings
+from ship import Ship
 
 
 class Invasion:
@@ -15,6 +16,9 @@ class Invasion:
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption('Invasion')
 
+        #  place ship
+        self.ship = Ship(self)
+
         #  background color
         self.bg_color = (230, 230, 230)
 
@@ -27,6 +31,7 @@ class Invasion:
                     sys.exit()
 
             self.screen.fill(self.settings.bg_color)
+            self.ship.blitme()
 
             pygame.display.flip()
 
