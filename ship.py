@@ -4,7 +4,7 @@ import pygame
 class Ship:
     """ship controls"""
 
-    def __init__(self, ai_game):
+    def __init__(self, ai_game) -> None:
         self.screen = ai_game.screen
         self.settings = ai_game.settings
         self.screen_rect = ai_game.screen.get_rect()
@@ -25,7 +25,7 @@ class Ship:
         #  move left flag
         self.moving_left = False
 
-    def update(self):
+    def update(self) -> None:
         """
         renew the ship's position in case of flag
         :return: None
@@ -38,6 +38,6 @@ class Ship:
         #  Update rect x coordinate
         self.rect.x = self.x
 
-    def blitme(self):
+    def blitme(self) -> None:
         """paint new spaceship"""
         self.screen.blit(self.image, self.rect)

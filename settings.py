@@ -1,7 +1,7 @@
 class Settings:
     """settings class"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         #  screen settings
         self.screen_width = 1200
         self.screen_height = 800

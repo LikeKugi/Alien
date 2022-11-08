@@ -8,7 +8,7 @@ class Bullet(Sprite):
     bullet and its management
     """
 
-    def __init__(self, ai_game: Invasion):
+    def __init__(self, ai_game: Invasion) -> None:
         """
         creating a bullet in the current ship's position
         :param ai_game: Invasion
@@ -25,7 +25,7 @@ class Bullet(Sprite):
         # bullet's position
         self.y = float(self.rect.y)
 
-    def update(self):
+    def update(self) -> None:
         """
         move bullet up
         :return: None
@@ -36,7 +36,7 @@ class Bullet(Sprite):
         #  renew the rect,s position
         self.rect.y = self.y
 
-    def draw_bullet(self):
+    def draw_bullet(self) -> None:
         """
         draw a bullet on the screen
         :return: None

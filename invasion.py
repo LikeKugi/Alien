@@ -2,12 +2,13 @@ import sys
 import pygame
 from settings import Settings
 from ship import Ship
+from bullet import Bullet
 
 
 class Invasion:
     """resource management"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         pygame.init()
 
         self.settings = Settings()
@@ -25,20 +26,23 @@ class Invasion:
 
         #  place ship
         self.ship = Ship(self)
+        #  init bullets
+        self.bullets = pygame.sprite.Group()
 
         #  background color
         self.bg_color = self.settings.bg_color
 
-    def run_game(self):
+    def run_game(self) -> None:
         """main loop start"""
         while True:
             self._check_events()
             self.ship.update()
+            self.bullets.update()
             self._update_screen()
 
             pygame.display.flip()
 
-    def _check_events(self):
+    def _check_events(self) -> None:
         """
         check ivents or key mapped
         :return: None
@@ -58,7 +62,7 @@ class Invasion:
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
 
-    def _check_keydown_events(self, event):
+    def _check_keydown_events(self, event: pygame.event) -> None:
         """
         reaction for keydown
         :param event: pygame.event
@@ -71,9 +75,13 @@ class Invasion:
             #  move left
             self.ship.moving_left = True
         elif event.key == pygame.K_q:
+            #  exit
             sys.exit()
+        elif event.key == pygame.K_SPACE:
+            #  fire bullets
+            self._fire_bullet()
 
-    def _check_keyup_events(self, event):
+    def _check_keyup_events(self, event: pygame.event) -> None:
         """
         reaction for keyup
         :param event: pygame.event
@@ -86,13 +94,24 @@ class Invasion:
             #  stop moving left
             self.ship.moving_left = False
 
-    def _update_screen(self):
+    def _fire_bullet(self) -> None:
+        """
+        creating a new bullet and including it into the bullets group
+        :return: None
+        """
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
+
+    def _update_screen(self) -> None:
         """
         update screen and show new screen
         :return: None
         """
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
+
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
 
 
 if __name__ == '__main__':
