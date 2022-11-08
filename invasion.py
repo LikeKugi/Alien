@@ -36,8 +36,10 @@ class Invasion:
         """main loop start"""
         while True:
             self._check_events()
+
             self.ship.update()
-            self.bullets.update()
+            self._update_bullets()
+
             self._update_screen()
 
             pygame.display.flip()
@@ -99,8 +101,21 @@ class Invasion:
         creating a new bullet and including it into the bullets group
         :return: None
         """
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+
+    def _update_bullets(self) -> None:
+        """
+        update bullets
+        :return: None
+        """
+        self.bullets.update()
+
+        #  remove bullets
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
 
     def _update_screen(self) -> None:
         """
