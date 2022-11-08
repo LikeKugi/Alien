@@ -1,4 +1,3 @@
-from invasion import Invasion
 import pygame
 from pygame.sprite import Sprite
 
@@ -8,7 +7,7 @@ class Bullet(Sprite):
     bullet and its management
     """
 
-    def __init__(self, ai_game: Invasion) -> None:
+    def __init__(self, ai_game) -> None:
         """
         creating a bullet in the current ship's position
         :param ai_game: Invasion
