@@ -43,6 +43,7 @@ class Invasion:
 
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
 
             self._update_screen()
 
@@ -120,6 +121,13 @@ class Invasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+
+    def _update_aliens(self) -> None:
+        """
+        update positions of alienship
+        :return: None
+        """
+        self.aliens.update()
 
     def _create_fleet(self) -> None:
         """
