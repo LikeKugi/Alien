@@ -130,15 +130,24 @@ class Invasion:
 
         # calculating space between alienships and count of alienships in a row
         alien_width = alien.rect.width
-        avaiable_space_x = self.settings.screen_width - (2 * alien_width)
-        number_aliens_x = avaiable_space_x // (2 * alien_width)
+        available_space_x = self.settings.screen_width - (2 * alien_width)
+        number_aliens_x = available_space_x // (2 * alien_width)
 
         #  creating a row
         for alien_number in range(number_aliens_x):
-            alien = Alien(self)
-            alien.x = alien_width + 2 * alien_width * alien_number
-            alien.rect.x = alien.x
-            self.aliens.add(alien)
+            self._create_alien(alien_number)
+
+    def _create_alien(self, alien_number: int) -> None:
+        '''
+        create an alien and put it in a row
+        :param alien_number: int (number of alien in a row)
+        :return: None
+        '''
+        alien = Alien(self)
+        alien_width = alien.rect.width
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        self.aliens.add(alien)
 
     def _update_screen(self) -> None:
         """
