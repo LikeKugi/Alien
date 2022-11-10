@@ -9,7 +9,7 @@ class Alien(Sprite):
 
     def __init__(self, ai_game):
         """
-        initialize alien spaceship and it's position
+        initialize alien spaceship, and it's position
         :param ai_game: Invasion
         """
         super().__init__()
@@ -32,10 +32,12 @@ class Alien(Sprite):
         check if the alienship is close to the edge
         :return: bool
             True - if next to the edge
+            False - if far from the edge
         """
         screen_rect = self.screen.get_rect()
         if self.rect.right >= screen_rect.right or self.rect.left <= 0:
             return True
+        return False
 
     def update(self) -> None:
         """

@@ -69,6 +69,8 @@ class Invasion:
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
 
+#  KEYBIND actions
+
     def _check_keydown_events(self, event: pygame.event) -> None:
         """
         reaction for keydown
@@ -92,7 +94,7 @@ class Invasion:
         """
         reaction for keyup
         :param event: pygame.event
-        :return:
+        :return: None
         """
         if event.key == pygame.K_RIGHT:
             #  stop moving right
@@ -100,6 +102,8 @@ class Invasion:
         elif event.key == pygame.K_LEFT:
             #  stop moving left
             self.ship.moving_left = False
+
+# BULLETS actions
 
     def _fire_bullet(self) -> None:
         """
@@ -121,6 +125,13 @@ class Invasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+
+        #  check for collision with alienship
+        #  in case of collision delete both bullet and alienship
+        collisions = pygame.sprite.groupcollide(
+            self.bullets, self.aliens, True, True)
+
+# ALIENS actions
 
     def _update_aliens(self) -> None:
         """
@@ -185,6 +196,8 @@ class Invasion:
         for alien in self.aliens.sprites():
             alien.rect.y += self.settings.fleet_drop_speed
         self.settings.fleet_direction *= -1  # from fleet_direction in settings
+
+# SCREEN actions
 
     def _update_screen(self) -> None:
         """
