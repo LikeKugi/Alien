@@ -41,3 +41,11 @@ class Ship:
     def blitme(self) -> None:
         """paint new spaceship"""
         self.screen.blit(self.image, self.rect)
+
+    def center_ship(self) -> None:
+        """
+        place a new ship in the MIDBOTTOM
+        :return: None
+        """
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)
