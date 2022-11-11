@@ -145,6 +145,7 @@ class Invasion:
             self.stats.game_active = True
             self.sb.prep_score()
             self.sb.prep_level()
+            self.sb.prep_ships()
 
             # clear the screen from alienships and bullets
             self.aliens.empty()
@@ -312,6 +313,7 @@ class Invasion:
         if self.stats.ships_left > 0:
             # minus ship
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
 
             # clear bullets and aliens
             self.aliens.empty()
