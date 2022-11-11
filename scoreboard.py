@@ -28,7 +28,8 @@ class Scoreboard:
         modify the current score to the image
         :return: None
         """
-        score_str = str(self.stats.score)
+        rounded_score = round(self.stats.score, -1)
+        score_str = '{:,}'.format(rounded_score)
         self.score_image = self.font.render(score_str, True, self.text_color, self.settings.bg_color)
 
         #  print the score at the top of the screen

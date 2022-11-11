@@ -21,6 +21,7 @@ class Settings:
 
         #  scale dynamic settings
         self.speed_up_scale = 1.1
+        self.score_scale = 1.5
 
         self.initialize_dynamic_settings()
 
@@ -33,6 +34,10 @@ class Settings:
         init dynamic changed settings
         :return: None
         """
+        #  counter
+        self.alien_points = 50
+
+        #  speed increase factors
         self.ship_speed_factor = 1.5
         self.bullet_speed_factor = 3.0
         self.alien_speed_factor = 1.0
@@ -50,3 +55,4 @@ class Settings:
         self.ship_speed *= self.speed_up_scale
         self.bullet_speed *= self.speed_up_scale
         self.alien_speed *= self.speed_up_scale
+        self.alien_points = int(self.alien_points * self.score_scale)

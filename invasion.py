@@ -139,9 +139,11 @@ class Invasion:
         if button_clicked and not self.stats.game_active:
             #  reset the game settings
             self.settings.initialize_dynamic_settings()
+
             #  default the game stats
             self.stats.reset_stats()
             self.stats.game_active = True
+            self.sb.prep_score()
 
             # clear the screen from alienships and bullets
             self.aliens.empty()
@@ -274,6 +276,11 @@ class Invasion:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+
+        if collisions:
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points
+            self.sb.prep_score()
 
     def _check_aliens_bottom(self) -> None:
         """
