@@ -27,7 +27,7 @@ class Button:
         self.rect.center = self.screen_rect.center
 
         #  message on the button
-        self.prep_msg = msg
+        self._prep_msg(msg)
 
     def _prep_msg(self, msg: str) -> None:
         """

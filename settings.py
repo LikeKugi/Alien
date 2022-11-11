@@ -8,11 +8,11 @@ class Settings:
         self.bg_color = (137, 207, 240)
 
         #  the ship's settings
-        self.ship_speed = 1
+        self.ship_speed = 2
         self.ship_limit = 3
 
         #  bullets settings
-        self.bullets_allowed = 3
+        self.bullets_allowed = 5
         self.bullet_speed = 2
         self.bullet_width = 3
         self.bullet_height = 15
