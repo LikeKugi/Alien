@@ -144,6 +144,7 @@ class Invasion:
             self.stats.reset_stats()
             self.stats.game_active = True
             self.sb.prep_score()
+            self.sb.prep_level()
 
             # clear the screen from alienships and bullets
             self.aliens.empty()
@@ -276,6 +277,10 @@ class Invasion:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+
+            #  increase the level
+            self.stats.level += 1
+            self.sb.prep_level()
 
         if collisions:
             for aliens in collisions.values():
