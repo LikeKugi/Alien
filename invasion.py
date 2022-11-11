@@ -9,6 +9,7 @@ from button import Button
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from scoreboard import Scoreboard
 
 
 class Invasion:
@@ -32,6 +33,7 @@ class Invasion:
 
         #  statistics
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
 
         #  place ship
         self.ship = Ship(self)
@@ -126,7 +128,7 @@ class Invasion:
             #  stop moving left
             self.ship.moving_left = False
 
-    def _check_play_button(self, mouse_pos:pygame.event) -> None:
+    def _check_play_button(self, mouse_pos: pygame.event) -> None:
         """
         start the new game after the Play button pressed
         :param mouse_pos: pygame.event
@@ -331,6 +333,9 @@ class Invasion:
 
         #  aliens
         self.aliens.draw(self.screen)
+
+        #  show the score
+        self.sb.show_score()
 
         # show PLAY button if the game is inactive
         if not self.stats.game_active:
